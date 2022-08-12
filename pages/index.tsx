@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Link from "next/link";
 import useSWR, { SWRConfig, SWRConfiguration } from "swr";
 import styles from "../styles/Home.module.css";
 
@@ -38,8 +39,17 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>{name}</h1>
         <p className={styles.description}>{description}</p>
         <p>
-          <strong>👁 {subscribers_count}</strong> <strong>✨ {stargazers_count}</strong>{" "}
-          <strong>🍴 {forks_count}</strong>
+          <Link href={{ pathname: "/forks", query: { name, description, forks_count } }}>
+            <strong>🍴 forks_count</strong>
+          </Link>
+          <Link
+            href={{ pathname: "/subscribers", query: { name, description, subscribers_count } }}
+          >
+            <strong>👁 subscribers_count</strong>
+          </Link>
+          <Link href={{ pathname: "/stargazers", query: { name, description, stargazers_count } }}>
+            <strong>✨ stargazers_count</strong>
+          </Link>
         </p>
       </main>
     </div>
